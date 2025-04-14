@@ -1,4 +1,5 @@
 const clienteController = require("../controllers/ClienteController");
+const tipoLocacaoController = require("../controllers/TipoLocacaoController");
 // importando express
 const {Router} = require("express");
 const router = Router();
@@ -14,6 +15,7 @@ router.post("/cadastroCliente", (req, res) => {
   
 });
 
+
 router.put('/editarDadosCliente',  clienteController.editarDados);
 
 router.delete('/excluirDadosCliente/:id', clienteController.deletarCliente);
@@ -22,5 +24,17 @@ router.get('/listarClientes', clienteController.listarClientes);
 
 router.get('/listarClientesId/:id', clienteController.listarClientePorId);
 
+router.post("/cadastroTipoLocacao", (req, res) => {
+    const TipoLocacaoCadastro = req.body;
+    const cadastroTipoLocacao = tipoLocacaoController.insert(TipoLocacaoCadastro);
+    cadastroTipoLocacao.then(TipoLocacaoCadastroCriado =>
+    res.status(201).json(TipoLocacaoCadastroCriado)).catch(error =>
+    res.status(400).json(error.message))
+  
+});
+
+router.put('/editarDadosLocacao',  tipoLocacaoController.editarLocacao);
+
+router.delete('/excluirDadosLocacao/:id', tipoLocacaoController.deletarLocacao);
 
 module.exports = router;

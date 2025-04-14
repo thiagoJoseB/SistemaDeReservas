@@ -1,5 +1,5 @@
 const conexao = require("../database/conexao");
-const clienteRoute = require("../routers/ClienteRoute");
+const clienteRoute = require("../routers/Route");
 
 class ClienteModel{
 
