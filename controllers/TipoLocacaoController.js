@@ -80,6 +80,24 @@ class TipoLocacaoController
     }
 
 
+    listarDisponiveis(req, res) {
+        const { data } = req.query;
+    
+        if (!data) {
+            return res.status(400).json({ message: "A data é obrigatória para verificar disponibilidade." });
+        }
+    
+        tipoLocacaoModel.listarLocacoesDisponiveis(data)
+            .then(locacoesDisponiveis => {
+                res.status(200).json(locacoesDisponiveis);
+            })
+            .catch(error => {
+                console.error("Erro ao buscar locações disponíveis:", error);
+                res.status(500).json({ message: "Erro interno ao buscar locações disponíveis", error });
+            });
+    }
+    
+
 
 }
 

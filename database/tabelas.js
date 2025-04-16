@@ -3,6 +3,7 @@ class tabelas {
         this.conexao = conexao;
         this.criarTabelaCliente();
         this.criarTabelaTipoLocacao();
+        this.criarTabelaReserva();
         
         
     }
@@ -27,7 +28,7 @@ class tabelas {
                 console.log(error.message);
                 return;
             }
-        console.log("Sucesso, tabela do bando criada com sucesso!");
+        console.log("Sucesso, tabela Cliente criada com sucesso!");
         });
     }
 
@@ -52,9 +53,37 @@ class tabelas {
                 console.log(error.message);
                 return;
             }
-        console.log("Sucesso, tabela do bando criada com sucesso!");
+        console.log("Sucesso, tabela Tipo Locação criada com sucesso!");
         });
     }
+    
+    criarTabelaReserva() {
+        const sql = `
+            CREATE TABLE IF NOT EXISTS Reserva (
+                id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                cliente_id INTEGER NOT NULL,
+                locacao_id INTEGER NOT NULL,
+                data_inicio DATETIME NOT NULL,
+                data_fim DATETIME NOT NULL,
+                valor_final DECIMAL(10,2) NOT NULL,
+                situacao VARCHAR(100) NOT NULL,
+                data_criacao TIMESTAMP,
+    
+                CONSTRAINT fk_cliente FOREIGN KEY (cliente_id) REFERENCES Cliente(id),
+                CONSTRAINT fk_locacao FOREIGN KEY (locacao_id) REFERENCES Locacao(id)
+            );
+        `;
+    
+        this.conexao.query(sql, (error) => {
+            if (error) {
+                console.log("Erro ao criar a tabela Reserva!");
+                console.log(error.message);
+                return;
+            }
+            console.log("Sucesso, tabela Reserva criada com sucesso!");
+        });
+    }
+    
 }
 
 

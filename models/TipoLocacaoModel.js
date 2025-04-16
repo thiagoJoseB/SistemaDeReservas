@@ -84,6 +84,31 @@ class TipoLocacaoModel{
             });
         });
     }
+
+
+    async listarLocacoesDisponiveis(data) {
+        const sql = `
+        SELECT l.*
+            FROM Locacao l
+            WHERE NOT EXISTS (
+                SELECT 1
+                FROM Reserva r
+                WHERE r.locacao_id = l.id
+                AND DATE(?) BETWEEN DATE(r.data_inicio) AND DATE(r.data_fim)
+            );
+    `;
+    
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, [data], (error, resultados) => {
+                if (error) {
+                    reject({ message: "Erro ao buscar locações disponíveis", error });
+                } else {
+                    resolve(resultados);
+                }
+            });
+        });
+    }
+    
     
     
 }
