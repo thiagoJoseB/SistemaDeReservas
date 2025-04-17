@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require('cors')
 const port = 3000;
 
 
@@ -8,7 +9,7 @@ const tabelas = require("./database/tabelas");
 
 const router = require("./routers/index");
 const bodyParser = require('body-parser');
-
+app.use(cors()) 
 
 tabelas.init(conexao);
 app.use(express.json());
