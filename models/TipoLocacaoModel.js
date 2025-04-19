@@ -16,6 +16,20 @@ class TipoLocacaoModel{
           });
         });
       }
+
+      async listarTodos() {
+        const sql = "SELECT * FROM Locacao";
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, (error, resultados) => {
+                if (error) {
+                    reject({ message: "Erro ao listar as Locações", error: error });
+                } else {
+                    resolve(resultados);
+                }
+            });
+        });
+    }
+    
     async create(TipoLocacaoCadastro) {
        
         const sql = "INSERT INTO Locacao (id, nome, tipo, descricao, valor_hora, tempo_minimo,tempo_maximo,data_criacao) VALUES (null, ?, ?, ?, ?, ?,?,?)";

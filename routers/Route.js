@@ -34,6 +34,8 @@ router.post("/cadastroTipoLocacao", (req, res) => {
   
 });
 
+router.get('/listarTipoLocacao', tipoLocacaoController.listarLocações);
+
 router.get('/locacoesDisponiveis', (req, res) => tipoLocacaoController.listarDisponiveis(req, res));
 
 

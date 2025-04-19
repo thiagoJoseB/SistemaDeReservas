@@ -79,6 +79,17 @@ class TipoLocacaoController
             });
     }
 
+    listarLocações(req, res) {
+        tipoLocacaoModel.listarTodos()
+                .then((clientes) => {
+                    res.status(200).json({ message: "Locações listadas com sucesso", data: clientes });
+                })
+                .catch((error) => {
+                    console.error("Erro ao listar Locações:", error);
+                    res.status(500).json({ message: "Erro ao listar Locações", error });
+                });
+        }
+
 
     listarDisponiveis(req, res) {
         const { data } = req.query;
