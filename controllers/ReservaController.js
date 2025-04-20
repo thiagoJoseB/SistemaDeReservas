@@ -17,6 +17,17 @@ class ReservaController
             }
         });
     }
+
+        listarReservas(req, res) {
+            reservaModel.listarReservas()
+                .then((clientes) => {
+                    res.status(200).json({ message: "Reservas listadas com sucesso", data: clientes });
+                })
+                .catch((error) => {
+                    console.error("Erro ao listar Reservas:", error);
+                    res.status(500).json({ message: "Erro ao listar Reservas", error });
+                });
+        }
     
 }
 

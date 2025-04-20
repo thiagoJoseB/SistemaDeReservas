@@ -53,6 +53,8 @@ router.post("/cadastroReserva", (req, res) => {
   
 });
 
+router.get('/listarReservas', ReservaController.listarReservas);
+
 
 
 

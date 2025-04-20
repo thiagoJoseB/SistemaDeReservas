@@ -43,6 +43,20 @@ class ReservaModel
         });
     }
 
+    async listarReservas() {
+        const sql = "SELECT * FROM Reserva";
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, (error, resultados) => {
+                if (error) {
+                    reject({ message: "Erro ao listar as Reservas", error: error });
+                } else {
+                    resolve(resultados);
+                }
+            });
+        });
+    }
+    
+
 }
 
 module.exports = new ReservaModel();
