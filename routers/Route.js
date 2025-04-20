@@ -53,6 +53,10 @@ router.post("/cadastroReserva", (req, res) => {
   
 });
 
+router.put('/editarDadosReserva',  ReservaController.editarReserva);
+
+router.delete('/excluirDadosReserva/:id', ReservaController.deletarReserva);
+
 router.get('/listarReservas', ReservaController.listarReservas);
 
 
