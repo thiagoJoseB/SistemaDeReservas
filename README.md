@@ -39,18 +39,16 @@ CREATE TABLE Locacao (
 
 
 CREATE TABLE  Reserva(
-	id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  	cliente_id INTEGER NOT NULL,
-    locacao_id INTEGER NOT NULL,
-    data_inicio DateTime NOT NULL ,
+     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     cliente_id INTEGER NOT NULL,
+     locacao_id INTEGER NOT NULL,
+     data_inicio DateTime NOT NULL ,
      data_fim DateTime NOT NULL ,
       valor_final DECIMAL(10,2) NOT NULL,
       situacao VARCHAR(100) NOT NULL,
       data_criacao TIMESTAMP ,
-      
-        CONSTRAINT fk_cliente FOREIGN KEY (cliente_id) REFERENCES Cliente(id),
-
-    CONSTRAINT fk_locacao FOREIGN KEY (locacao_id) REFERENCES Locacao(id)
+      CONSTRAINT fk_cliente FOREIGN KEY (cliente_id) REFERENCES Cliente(id),
+      CONSTRAINT fk_locacao FOREIGN KEY (locacao_id) REFERENCES Locacao(id)
      
 )
 
