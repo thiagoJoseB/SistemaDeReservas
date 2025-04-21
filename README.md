@@ -11,10 +11,10 @@ npm install
 ###  3. Criar o banco de dados MySQL
 Abra seu cliente MySQL e execute os comandos abaixo:
 
-CREATE DATABASE BD_TESTE
-use BD_TESTE
+```CREATE DATABASE BD_TESTE
+```use BD_TESTE
 
-CREATE TABLE Cliente (
+```CREATE TABLE Cliente (
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE Cliente (
 );
 
 
-CREATE TABLE Locacao (
+```CREATE TABLE Locacao (
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     tipo VARCHAR(100) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE Locacao (
 
 
 
-CREATE TABLE  Reserva(
+```CREATE TABLE  Reserva(
      id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
      cliente_id INTEGER NOT NULL,
      locacao_id INTEGER NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE  Reserva(
 ###  4. Configurar a conexão com o banco
 Abra o arquivo: database/conexao.js E edite com as configurações do seu banco de dados:
 
-const conexao = mysql.createConnection({
+```const conexao = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
@@ -66,5 +66,5 @@ const conexao = mysql.createConnection({
 
 ###  5. Iniciar o projeto
 Dentro da pasta principal (SistemaDeReservas) rode o comando
-nodemon /index
+```nodemon /index
 
